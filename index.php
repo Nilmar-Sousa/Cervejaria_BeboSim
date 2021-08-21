@@ -44,29 +44,15 @@ if(isset($_POST['email'])) {
 	$email = addslashes($_POST['email']);
 	$senha = addslashes($_POST['senha']);
 	if(!empty($email) && !empty($senha)) {
-		//$usuario->conectar("cervejaria","localhost","root","");
-	//	if($usuario->msgErro == "") {
-			if($usuario->logar($email,$senha))
-			{
+			if($usuario->logar($email,$senha)) {
 				header("location: views/Funcionarios/gerenciar_funcionarios.php");
-			}
-			else
-			{
+			}else {
 				?>
 				<div class="msg-erro">
 					Email e/ou senha estão incorretos!
 				</div>
 				<?php
 			}
-		/*
-		else
-		{
-			?>
-			<div class="msg-erro">
-				<?php echo "Erro: ".$usuario->msgErro; ?>
-			</div>
-			<?php
-		}*/
 	}else {
 		?>
 		<div class="msg-erro">

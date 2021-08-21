@@ -10,6 +10,15 @@
 
     <title>Gerenciamento de Funcionários</title>
   </head>
+
+  <?php
+    session_start();
+    if(!isset($_SESSION['id_usuario'])){
+      header("location: ../../index.php");
+      exit;
+    }
+  ?>
+
   <body>
       <div class="container">
           <div class="row">
@@ -21,6 +30,7 @@
                 <p>Acesse as funcionalidades.</p>
                 <a class="btn btn-warning btn-lg" href="cadastrar_funcionarios.php" role="button">Cadastrar Funcionário</a>
                 <a class="btn btn-warning btn-lg" href="pesquisar_funcionarios.php" role="button">Pesquisar Funcionário</a>
+                <a class="btn btn-danger btn-lg" href="../../sair.php" role="button">Encerrar Sessão </a>
             </div>
           </div>
       </div>
