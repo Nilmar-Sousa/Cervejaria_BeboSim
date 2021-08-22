@@ -1,6 +1,6 @@
 <?php 
-require_once '../../classes/funcionarios.php';
-$funcionario = new Funcionario("cervejaria","localhost","root","");
+require_once '../../classes/usuarios.php';
+$usuario = new Usuario("cervejaria","localhost","root","");
 ?>
 
 <!doctype html>
@@ -13,16 +13,16 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 
-    <title>Pesquisar Funcionários</title>
+    <title>Pesquisar Usuários</title>
   </head>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
-  <?php
+  <?php/*
   session_start();
   if(!isset($_SESSION['id_usuario'])){
     header("location: ../../index.php");
     exit;
-  }
+  }*/
   ?>
     <body>
         <div class="container">
@@ -30,7 +30,7 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
             <div class="col">
             <h1>Pesquisar</h1>
             <nav class="navbar navbar-light bg-light" >
-                <form class="form-inline" action="pesquisar_funcionarios.php" method="POST">
+                <form class="form-inline" action="pesquisar_usuarios.php" method="POST">
                     <input class="form-control mr-sm-2" type="search" placeholder="Insira o CPF" aria-label="Pesquisar" name="pesquisa">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
                 </form>
@@ -39,27 +39,27 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
             <thead>
               <tr>
                 <th scope="col">Nome</th>
-                <th scope="col">Data de Admissão</th>
-                <th scope="col">Número da CTPS</th>
-                <th scope="col">CPF</th>
-                <th scope="col">Endereço</th>
+                <!-- <th scope="col">Data de Admissão</th> -->
+                <!-- <th scope="col">Número da CTPS</th> -->
+                <!-- <th scope="col">CPF</th> -->
+                <!-- <th scope="col">Endereço</th> -->
                 <th scope="col">Telefone</th>
                 <th scope="col">Email</th>
                 <th scope="col">Ações</th>
               </tr>
 <?php
-  $dados = $funcionario->buscarDados();
+  $dados = $usuario->buscarDados();
   if(count($dados) > 0){
     for ($i=0; $i < count($dados); $i++){
       echo "<tr>";
       foreach ($dados[$i] as $key => $value) {
-        if($key != "id_funcionario"){
+        if($key != "id_usuario" && $key != "senha"){
           echo "<td>".$value."</td>";
         }
       }
       ?>
-        <td witdh=150px><a href='editar_funcionarios.php?id_update=<?php echo $dados[$i]['id_funcionario'];?>' class='btn btn-success btn-sm'>Editar</a>
-          <a href='pesquisar_funcionarios.php?id_funcionario=<?php echo $dados[$i]['id_funcionario'];?>' class='btn btn-danger btn-sm'>Excluir</a>
+        <td witdh=150px><a href='editar_usuarios.php?id_update=<?php echo $dados[$i]['id_usuario'];?>' class='btn btn-success btn-sm'>Editar</a>
+          <a href='pesquisar_usuarios.php?id_usuario=<?php echo $dados[$i]['id_usuario'];?>' class='btn btn-danger btn-sm'>Excluir</a>
         </td>
       <?php
       echo "</tr>";
@@ -79,19 +79,18 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
               </tr>
           </tbody> -->
           </table>
-          <a href="gerenciar_funcionarios.php" class="btn btn-info">Voltar para o ínicio</a>
+          <a href="gerenciar_usuarios.php" class="btn btn-info">Voltar para o ínicio</a>
             </div>
           </div>
         </div>
 
 <?php
-  if(isset($_GET['id_funcionario'])){
-    $id_funcionario = addslashes($_GET['id_funcionario']);
-    $funcionario->excluir($id_funcionario);
-    header("location: pesquisar_funcionarios.php");
+  if(isset($_GET['id_usuario'])){
+    $id_funcionario = addslashes($_GET['id_usuario']);
+    $funcionario->excluir($id_usuario);
+    header("location: pesquisar_usuarios.php");
   }
 ?>
-   
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
@@ -102,6 +101,5 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-
   </body>
 </html>

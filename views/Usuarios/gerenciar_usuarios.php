@@ -8,30 +8,31 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 
-    <title>Gerenciamento de Funcionários</title>
+    <title>Gerenciamento de Usuários</title>
   </head>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
-  <?php
+
+    <?php
     session_start();
     if(!isset($_SESSION['id_usuario'])){
       header("location: ../../index.php");
       exit;
     }
-  ?>
+    ?>
 
   <body>
       <div class="container">
           <div class="row">
               <div class="col">
               <div class="jumbotron">
-                <h1 class="display-4">Módulo de Funcionários</h1>
-                <p class="lead">Módulo responsável por fazer o gerenciamento dos funcionários da empresa.</p>
+                <h1 class="display-4">Módulo de Usuários</h1>
+                <p class="lead">Módulo responsável por fazer o gerenciamento dos Usuários do Sistema.</p>
                 <hr class="my-4">
                 <p>Acesse as funcionalidades.</p>
-                <a class="btn btn-warning btn-lg" href="cadastrar_funcionarios.php" role="button">Cadastrar Funcionário</a>
-                <a class="btn btn-warning btn-lg" href="pesquisar_funcionarios.php" role="button">Pesquisar Funcionário</a>
-                <a class="btn btn-danger btn-lg" href="../../sair.php" role="button">Encerrar Sessão </a>
+                <a class="btn btn-warning btn-lg" href="cadastrar_usuarios.php" role="button">Cadastrar Usuários</a>
+                <a class="btn btn-warning btn-lg" href="pesquisar_usuarios.php" role="button">Pesquisar Usuários</a>
+                <a class="btn btn-danger btn-lg" href="../../sair.php" role="button">Encerrar Sessão</a>
             </div>
           </div>
       </div>

@@ -52,15 +52,12 @@ Class Usuario {
 		return $res;
 	}
 
-	public function atualizarDados($id, $nome, $data_admissao, $numero_ctps, $cpf, $endereco, $telefone, $email){
-		$sql = $this->pdo->prepare("UPDATE funcionarios SET nome = :nome, data_admissao = :data_admissao, numero_ctps = :numero_ctps, cpf = :cpf, endereco = :endereco, telefone = :telefone, email = :email WHERE id_funcionario = :id");
+	public function atualizarDados($id, $nome, $telefone, $email, $senha){
+		$sql = $this->pdo->prepare("UPDATE usuarios SET nome = :nome, telefone = :telefone, email = :email, senha = :senha WHERE id_usuarios = :id");
 		$sql->bindValue(":nome",$nome);
-		$sql->bindValue(":data_admissao",$data_admissao);
-		$sql->bindValue(":numero_ctps",$numero_ctps);
-		$sql->bindValue(":cpf",$cpf);
-		$sql->bindValue(":endereco",$endereco);
 		$sql->bindValue(":telefone",$telefone);
 		$sql->bindValue(":email",$email);
+		$sql->bindValue(":senha",md5($senha));
 		$sql->bindValue(":id",$id);
 		$sql->execute();
 	}
@@ -71,7 +68,6 @@ Class Usuario {
 		$sql->bindValue(":senha",md5($senha));
 		$sql->execute();
 		if($sql->rowCount() > 0){
-			//entrar no sistema (sessao)
 			$dado = $sql->fetch();
 			session_start();
 			$_SESSION['id_usuario'] = $dado['id_usuario'];

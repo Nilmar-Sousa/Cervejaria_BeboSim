@@ -1,6 +1,6 @@
 <?php 
-require_once '../../classes/funcionarios.php';
-$funcionario = new Funcionario("cervejaria","localhost","root","");
+require_once '../../classes/usuarios.php';
+$usuario = new Usuario("cervejaria","localhost","root","");
 ?>
 
 <!doctype html>
@@ -13,7 +13,7 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css" >
 
-    <title>Editar o cadastro dos funcionários</title>
+    <title>Editar o cadastro dos usuários</title>
   </head>
   <body>
 
@@ -29,7 +29,7 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
 <?php //Retornar os resultado da pesquisa no formulário
   if(isset($_GET['id_update'])){
     $id_update = addslashes($_GET['id_update']);
-    $res = $funcionario->buscarDadosFuncionario($id_update);
+    $res = $usuario->buscarDadosUsuarios($id_update);
   }
 ?>
 
@@ -38,28 +38,34 @@ if(isset($_POST['nome'])){
   if(isset($_GET['id_update']) && !empty($_GET['id_update'])){
     $id = addslashes($_GET['id_update']);
     $nome = addslashes($_POST['nome']);
-    $data_admissao = addslashes($_POST['data_admissao']);
-    $numero_ctps = addslashes($_POST['numero_ctps']);
-    $cpf = addslashes($_POST['cpf']);
-    $endereco = addslashes($_POST['endereco']);
     $telefone = addslashes($_POST['telefone']);
     $email = addslashes($_POST['email']);
-    if(!empty($nome) && !empty($data_admissao) && !empty($numero_ctps) && !empty($cpf) && !empty($endereco) && !empty($telefone) && !empty($email)) {
-      $funcionario->atualizarDados($id, $nome, $data_admissao, $numero_ctps, $cpf, $endereco, $telefone, $email);
-      header("location: ../views/gerenciar_funcionarios.php");
-        ?>
-        <div id="msg-sucesso"> 
-        Dados do Funcionário Atualizados com sucesso!
-        </div>
-        <?php
+    $senha = addslashes($_POST['senha']);
+    $confirmar_senha = addslashes($_POST['confirmar_senha']);
+    if(!empty($nome) && !empty($telefone) && !empty($email) && !empty($senha) && !empty($confirmar_senha)) {
+        if($senha == $confirmar_senha){
+            $usuario->atualizarDados($id, $nome, $telefone, $email, $senha);
+            header("location: gerenciar_usuarios.php");
+              ?>
+              <div id="msg-sucesso"> 
+              Dados do Usuário Atualizados com sucesso!
+              </div>
+              <?php
+        }else{
+            ?>
+            <div class="msg-erro">
+            Senha e confirmar senha não correspondem
+            </div>
+            <?php
+        }
     }else {
         ?>
         <div class="msg-erro">
         Preencha todos os campos
         </div>
         <?php
-      }
-  }
+    }
+    }
 }
 ?>
 
@@ -72,22 +78,6 @@ if(isset($_POST['nome'])){
                    <label for="nome" class="form-label">Nome Completo</label>
                    <input type="text" class="form-control" name="nome" required value="<?php if(isset($res)){echo $res['nome'];} ?>">
                  </div>
-                 <div class="mb-3">
-                   <label for="data_admissao" class="form-label">Data de Admissão</label>
-                   <input type="date" class="form-control" name="data_admissao" required value="<?php if(isset($res)){echo $res['data_admissao'];} ?>">
-                 </div>
-                 <div class="mb-3">
-                   <label for="numero_ctps" class="form-label">Número da Carteira de Trabalho</label>
-                   <input type="text" class="form-control" name="numero_ctps" required value="<?php if(isset($res)){echo $res['numero_ctps'];} ?>">
-                 </div>
-                 <div class="mb-3">
-                   <label for="cpf" class="form-label">CPF</label>
-                   <input type="text" class="form-control" name="cpf" required value="<?php if(isset($res)){echo $res['cpf'];} ?>">
-                 </div>
-                 <div class="mb-3">
-                  <label for="endereco" class="form-label">Endereço</label>
-                  <input type="text" class="form-control" name="endereco" required value="<?php if(isset($res)){echo $res['endereco'];} ?>">
-                </div>
                 <div class="mb-3">
                   <label for="telefone" class="form-label">Telefone</label>
                   <input type="text" class="form-control" name="telefone" required value="<?php if(isset($res)){echo $res['telefone'];} ?>"> 
@@ -96,9 +86,17 @@ if(isset($_POST['nome'])){
                   <label for="email" class="form-label">Email</label>
                   <input type="email" class="form-control" name="email" required value="<?php if(isset($res)){echo $res['email'];} ?>">
                 </div>
+                <div class="mb-3">
+                  <label for="senha" class="form-label">Senha</label>
+                  <input type="password" class="form-control" name="senha" required value="<?php if(isset($res)){echo $res['senha'];} ?>">
+                </div>
+                <div class="mb-3">
+                  <label for="confirmar_senha" class="form-label">Confirmar Senha</label>
+                  <input type="password" class="form-control" name="confirmar_senha" required value="<?php if(isset($res)){echo $res['senha'];} ?>">
+                </div>
                 <input type="submit" class="btn btn-success" value="Salvar Alterações">
                <!-- <button type="submit" class="btn btn-success">Salvar Alterações</button> -->
-               <a href="../views/gerenciar_funcionarios.php" class="btn btn-info">Voltar para o ínicio</a>
+               <a href="gerenciar_usuarios.php" class="btn btn-info">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>
@@ -115,6 +113,5 @@ if(isset($_POST['nome'])){
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-
   </body>
 </html>
