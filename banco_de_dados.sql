@@ -30,5 +30,13 @@ CREATE TABLE funcionarios (
   email varchar(40)
 ) 
 
+CREATE TABLE clientes (
+  id_cliente int(11) AUTO_INCREMENT primary key,
+  razao_social varchar(50),
+  cnpj varchar(20),
+  email varchar(40),
+  endereco varchar(80),
+  telefone varchar(30),
+  nome_representante varchar(40)
+) 
 
-INSERT INTO funcionarios VALUES ();
