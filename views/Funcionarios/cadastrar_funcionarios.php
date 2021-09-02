@@ -12,8 +12,9 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+    
 
-    <title>Cadastro de Funcionários</title>
+    <title>Cadastro de Funcionário</title>
   </head>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
@@ -41,26 +42,26 @@ $funcionario = new Funcionario("cervejaria","localhost","root","");
                  </div>
                  <div class="mb-3">
                    <label for="numero_ctps" class="form-label">Número da Carteira de Trabalho</label>
-                   <input type="text" class="form-control" name="numero_ctps" required>
+                   <input type="text" class="form-control" name="numero_ctps" required maxlength="8">
                  </div>
                  <div class="mb-3">
                    <label for="cpf" class="form-label">CPF</label>
-                   <input type="text" class="form-control" name="cpf" required>
+                   <input type="text" id="cpf" class="form-control" name="cpf" required>
                  </div>
                  <div class="mb-3">
                   <label for="endereco" class="form-label">Endereço</label>
-                  <input type="text" class="form-control" name="endereco">
+                  <input type="text" class="form-control" name="endereco" required>
                 </div>
                 <div class="mb-3">
                   <label for="telefone" class="form-label">Telefone</label>
-                  <input type="text" class="form-control" name="telefone">
+                  <input type="text" id="telefone" class="form-control" name="telefone" required>
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="email" class="form-control" name="email">
+                  <input type="email" class="form-control" name="email" required>
                 </div>
-               <button type="submit" class="btn btn-success">Enviar</button>
-               <a href="../views/gerenciar_funcionarios.php" class="btn btn-info">Voltar para o ínicio</a>
+               <button type="submit" class="btn btn-success">Cadastrar</button>
+               <a href="../menu.html" class="btn btn-warning">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>
@@ -79,22 +80,16 @@ if(isset($_POST['nome'])){
     if(!empty($nome) && !empty($data_admissao) && !empty($numero_ctps) && !empty($cpf) && !empty($endereco) && !empty($telefone) && !empty($email)) {
       if($funcionario->cadastrar($nome,$data_admissao,$numero_ctps,$cpf,$endereco,$telefone,$email)){
         ?>
-        <div id="msg-sucesso"> 
-        Funcionário Cadastrado com sucesso!
-        </div>
+        <script>alert("Funcionário Cadastrado com Sucesso!");</script>
         <?php
       }else{
         ?>
-        <div class="msg-erro">
-        Funcionário já cadastrado!
-        </div>
+        <script>alert("Funcionário Já Possui Cadastro no Sistema!");</script>
         <?php
       }
     }else {
         ?>
-        <div class="msg-erro">
-        Preencha todos os campos
-        </div>
+        <script>alert("Preencha Todos os Campos!");</script>
         <?php
     }
 }
@@ -105,11 +100,20 @@ if(isset($_POST['nome'])){
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="../../bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/jquery.mask.min.js"></script>
+
+    <!-- Máscaras utilizadas nos inputs -->
+    <script type="text/javascript">
+    $("#cpf").mask("000.000.000-00")
+    $("#telefone").mask("(00) 0000-0000")
+    </script>
+    <!-- </script> -->
+
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-
   </body>
 </html>

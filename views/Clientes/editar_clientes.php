@@ -18,12 +18,12 @@ $cliente = new Cliente("cervejaria","localhost","root","");
   <body>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
-  <?php/*
+  <?php
     session_start();
     if(!isset($_SESSION['id_usuario'])){
       header("location: ../../index.php");
       exit;
-    }*/
+    }
   ?>
 
 <?php //Retornar os resultado da pesquisa no formulário
@@ -45,18 +45,13 @@ if(isset($_POST['razao_social'])){
     $nome_representante = addslashes($_POST['nome_representante']);
     if(!empty($razao_social) && !empty($cnpj) && !empty($email) && !empty($endereco) && !empty($telefone) && !empty($nome_representante)) {
       $cliente->atualizarDados($razao_social, $cnpj, $email, $endereco, $telefone, $nome_representante);
-      header("location: gerenciar_clientes.php");
-        ?>
-        <div id="msg-sucesso"> 
-        Dados do Cliente Atualizados com sucesso!
-        </div>
-        <?php
+      ?>
+      <script>alert("Dados do Cliente Atualizados com sucesso!");</script> 
+      <?php
     }else {
-        ?>
-        <div class="msg-erro">
-        Preencha todos os campos
-        </div>
-        <?php
+      ?>
+      <script>alert("Preencha Todos os Campos!");</script>
+      <?php
       }
   }
 }
@@ -93,7 +88,7 @@ if(isset($_POST['razao_social'])){
                 </div>
                 <input type="submit" class="btn btn-success" value="Salvar Alterações">
                <!-- <button type="submit" class="btn btn-success">Salvar Alterações</button> -->
-               <a href="gerenciar_clientes.php" class="btn btn-info">Voltar para o ínicio</a>
+               <a href="../menu.html" class="btn btn-info">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>
@@ -110,6 +105,5 @@ if(isset($_POST['razao_social'])){
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-
   </body>
 </html>

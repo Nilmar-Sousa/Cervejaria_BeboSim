@@ -46,24 +46,19 @@ if(isset($_POST['nome'])){
     $email = addslashes($_POST['email']);
     if(!empty($nome) && !empty($data_admissao) && !empty($numero_ctps) && !empty($cpf) && !empty($endereco) && !empty($telefone) && !empty($email)) {
       $funcionario->atualizarDados($id, $nome, $data_admissao, $numero_ctps, $cpf, $endereco, $telefone, $email);
-      header("location: ../views/gerenciar_funcionarios.php");
         ?>
-        <div id="msg-sucesso"> 
-        Dados do Funcionário Atualizados com sucesso!
-        </div>
+        <script>alert("Dados do Funcionário Atualizados com sucesso!");</script> 
         <?php
     }else {
         ?>
-        <div class="msg-erro">
-        Preencha todos os campos
-        </div>
+        <script>alert("Preencha Todos os Campos!");</script>
         <?php
       }
   }
 }
 ?>
 
-      <div class="container">
+      <div class="container Text-center">
           <div class="row">
               <div class="col">
                 <h1>Editar Funcionário</h1>
@@ -78,11 +73,11 @@ if(isset($_POST['nome'])){
                  </div>
                  <div class="mb-3">
                    <label for="numero_ctps" class="form-label">Número da Carteira de Trabalho</label>
-                   <input type="text" class="form-control" name="numero_ctps" required value="<?php if(isset($res)){echo $res['numero_ctps'];} ?>">
+                   <input type="text" class="form-control" name="numero_ctps" required required maxlength="8" value="<?php if(isset($res)){echo $res['numero_ctps'];} ?>">
                  </div>
                  <div class="mb-3">
                    <label for="cpf" class="form-label">CPF</label>
-                   <input type="text" class="form-control" name="cpf" required value="<?php if(isset($res)){echo $res['cpf'];} ?>">
+                   <input type="text" id="cpf" class="form-control" name="cpf" required value="<?php if(isset($res)){echo $res['cpf'];} ?>">
                  </div>
                  <div class="mb-3">
                   <label for="endereco" class="form-label">Endereço</label>
@@ -90,7 +85,7 @@ if(isset($_POST['nome'])){
                 </div>
                 <div class="mb-3">
                   <label for="telefone" class="form-label">Telefone</label>
-                  <input type="text" class="form-control" name="telefone" required value="<?php if(isset($res)){echo $res['telefone'];} ?>"> 
+                  <input type="text" id="telefone" class="form-control" name="telefone" required value="<?php if(isset($res)){echo $res['telefone'];} ?>"> 
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
@@ -98,7 +93,7 @@ if(isset($_POST['nome'])){
                 </div>
                 <input type="submit" class="btn btn-success" value="Salvar Alterações">
                <!-- <button type="submit" class="btn btn-success">Salvar Alterações</button> -->
-               <a href="../views/gerenciar_funcionarios.php" class="btn btn-info">Voltar para o ínicio</a>
+               <a href="../menu.html" class="btn btn-warning">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>
@@ -110,11 +105,19 @@ if(isset($_POST['nome'])){
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <script type="text/javascript" src="../../bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/jquery.mask.min.js"></script>
+
+    <!-- Máscaras utilizadas nos inputs -->
+    <script type="text/javascript">
+    $("#cpf").mask("000.000.000-00")
+    $("#telefone").mask("(00) 0000-0000")
+    </script>
+
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     -->
-
   </body>
 </html>

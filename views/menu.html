@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8">
@@ -9,53 +10,77 @@
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="menu.css">
 
-    <title>Módulos</title>
+    <title>Menu</title>
 </head>
-<body>
-<div class="wrapper">
-    <nav id="sidebar">
-        <div class="sidebar-header">
-            <h3>
-                Módulos
-            </h3>
-        </div>
-        <ul class="lisst-unstyled components">
-            <p>The Providers</p>
-            <li class="active">
-                <a href="#homeSubMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-                <ul class="collapse lisst-unstyled" id="homeSubMenu">
-                    <li>
-                        <a href="#">Home 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Home 2</a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                <ul class="collapse lisst-unstyled" id="pageSubmenu">
-                    <li>
-                        <a href="#">Page 1</a>
-                    </li>
-                    <li>
-                        <a href="#">Page 2</a>
-                    </li>
-                </ul>
-            </li>
-                    <li>
-                        <a href="#">Policy</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact us</a>
-                    </li>
-        </ul>
-    </nav>
 
-</div>
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>
+                    <img class="LOGO_CERVEJA" id="copo" src="../img/cerveja.png" alt="LOGO_Cervejaria">
+                </h3>
+            </div>
+
+            <ul class="lisst-unstyled components">
+
+                <li class="active">
+                    <a href="#homeSubMenu" data-toggle="collapse" aria-expanded="false">Funcionários</a>
+                    <ul class="collapse lisst-unstyled" id="homeSubMenu">
+                        <li>
+                            <a class="itens" href="Funcionarios/cadastrar_funcionarios.php">Cadastrar</a>
+                        </li>
+                        <li>
+                            <a class="itens" href="Funcionarios/pesquisar_funcionarios.php">Pesquisar</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="active">
+                    <a href="#homeSubMenu1" data-toggle="collapse" aria-expanded="false">Usuários</a>
+                    <ul class="collapse lisst-unstyled" id="homeSubMenu1">
+                        <li>
+                            <a class="itens" href="Usuarios/cadastrar_usuarios.php">Cadastrar</a>
+                        </li>
+                        <li>
+                            <a class="itens" href="Usuarios/pesquisar_usuarios.php">Pesquisar</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#homeSubMenu2" data-toggle="collapse" aria-expanded="false">Clientes</a>
+                    <ul class="collapse lisst-unstyled" id="homeSubMenu2">
+                        <li>
+                            <a class="itens" href="Clientes/cadastrar_clientes.php">Cadastrar</a>
+                        </li>
+                        <li>
+                            <a class="itens" href="Clientes/pesquisar_clientes.php">Pesquisar</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="#homeSubMenu3" data-toggle="collapse" aria-expanded="false">Produtos</a>
+                    <ul class="collapse lisst-unstyled" id="homeSubMenu3">
+                        <li>
+                            <a class="itens" href="Produtos/cadastrar_produtos.php">Cadastrar</a>
+                        </li>
+                        <li>
+                            <a class="itens" href="Produtos/pesquisar_produtos.php">Pesquisar</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="../sair.php" data-toggle="collapse" aria-expanded="false">Encerrar sessão</a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="imagem">
+        <img id="fundo" src="../img/Logo-BeBoSim.png" alt="" srcset="">
+    </div>
 
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
@@ -63,4 +88,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
+
 </html>

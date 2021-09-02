@@ -17,12 +17,12 @@ $cliente = new Cliente("cervejaria","localhost","root","");
   </head>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
-  <?php/*
+  <?php
     session_start();
     if(!isset($_SESSION['id_usuario'])){
       header("location: ../../index.php");
       exit;
-    }*/
+    }
   ?>
 
   <body>
@@ -37,7 +37,7 @@ $cliente = new Cliente("cervejaria","localhost","root","");
                  </div>
                  <div class="mb-3">
                    <label for="cnpj" class="form-label">CNPJ</label>
-                   <input type="text" class="form-control" name="cnpj" required>
+                   <input type="text" id="cnpj" class="form-control" name="cnpj" required>
                  </div>
                  <div class="mb-3">
                    <label for="email" class="form-label">Email</label>
@@ -49,14 +49,14 @@ $cliente = new Cliente("cervejaria","localhost","root","");
                 </div>
                 <div class="mb-3">
                   <label for="telefone" class="form-label">Telefone</label>
-                  <input type="text" class="form-control" name="telefone">
+                  <input type="text" id="telefone" class="form-control" name="telefone">
                 </div>
                 <div class="mb-3">
                   <label for="nome_representante" class="form-label">Nome do Representante</label>
                   <input type="text" class="form-control" name="nome_representante">
                 </div>
                <button type="submit" class="btn btn-success">Cadastrar</button>
-               <a href="gerenciar_clientes.php" class="btn btn-info">Voltar para o ínicio</a>
+               <a href="../menu.html" class="btn btn-info">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>
@@ -74,23 +74,17 @@ if(isset($_POST['razao_social'])){
     if(!empty($razao_social) && !empty($cnpj) && !empty($email) && !empty($endereco) && !empty($telefone) && !empty($nome_representante)) {
       if($cliente->cadastrar($razao_social, $cnpj, $email, $endereco, $telefone, $nome_representante)){
         ?>
-        <div id="msg-sucesso"> 
-        Cliente Cadastrado com sucesso!
-        </div>
+        <script>alert("Cliente Cadastrado com Sucesso!");</script>
         <?php
       }else{
         ?>
-        <div class="msg-erro">
-        Cliente já cadastrado!
-        </div>
+        <script>alert("Cliente Já Possui Cadastro no Sistema!");</script>
         <?php
       }
     }else {
-        ?>
-        <div class="msg-erro">
-        Preencha todos os campos
-        </div>
-        <?php
+      ?>
+      <script>alert("Preencha Todos os Campos!");</script>
+      <?php
     }
 }
 ?>
@@ -99,6 +93,14 @@ if(isset($_POST['razao_social'])){
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="../../bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+    $("#cnpj").mask("00.000.000/0000-00")
+    $("#telefone").mask("(00) 0000-0000")
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

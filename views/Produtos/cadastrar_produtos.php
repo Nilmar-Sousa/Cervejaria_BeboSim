@@ -17,12 +17,12 @@ $produto = new Produto("cervejaria","localhost","root","");
   </head>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
-  <?php/*
+  <?php
     session_start();
     if(!isset($_SESSION['id_usuario'])){
       header("location: ../../index.php");
       exit;
-    }*/
+    }
   ?>
 
   <body>
@@ -41,7 +41,7 @@ $produto = new Produto("cervejaria","localhost","root","");
                  </div>
                  <div class="mb-3">
                    <label for="preco_venda" class="form-label">Preço de Venda</label>
-                   <input type="text" class="form-control" name="preco_venda" required>
+                   <input type="text" id="salario" class="form-control" name="preco_venda" required>
                  </div>
                  <div class="mb-3">
                    <label for="percentual_comissao" class="form-label">Percentual de Comissão</label>
@@ -52,7 +52,7 @@ $produto = new Produto("cervejaria","localhost","root","");
                   <input type="text" class="form-control" name="formula" required>
                  </div>
                   <button type="submit" class="btn btn-success">Cadastrar</button>
-                  <a href="gerenciar_produtos.php" class="btn btn-info">Voltar para o ínicio</a>
+                  <a href="../menu.html" class="btn btn-info">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>
@@ -69,23 +69,17 @@ if(isset($_POST['nome'])){
     if(!empty($nome) && !empty($qtd_estoque) && !empty($preco_venda) && !empty($percentual_comissao) && !empty($formula)) {
       if($produto->cadastrar($nome, $qtd_estoque, $preco_venda, $percentual_comissao, $formula)){
         ?>
-        <div id="msg-sucesso"> 
-        Produto Cadastrado com sucesso!
-        </div>
+        <script>alert("Produto Cadastrado com Sucesso!");</script>
         <?php
       }else{
         ?>
-        <div class="msg-erro">
-        Produto já cadastrado!
-        </div>
+        <script>alert("Produto Já Possui Cadastro no Sistema!");</script>
         <?php
       }
     }else {
-        ?>
-        <div class="msg-erro">
-        Preencha todos os campos
-        </div>
-        <?php
+      ?>
+      <script>alert("Preencha Todos os Campos!");</script>
+      <?php
     }
 }
 ?>
@@ -94,6 +88,13 @@ if(isset($_POST['nome'])){
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="../../bootstrap/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../../bootstrap/js/jquery.mask.min.js"></script>
+
+    <script type="text/javascript">
+    $("#salario").mask("999.999.990,00", {reverse: true})
+    </script>
 
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--

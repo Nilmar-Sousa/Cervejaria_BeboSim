@@ -45,25 +45,18 @@ if(isset($_POST['nome'])){
     if(!empty($nome) && !empty($telefone) && !empty($email) && !empty($senha) && !empty($confirmar_senha)) {
         if($senha == $confirmar_senha){
             $usuario->atualizarDados($id, $nome, $telefone, $email, $senha);
-            header("location: gerenciar_usuarios.php");
-              ?>
-              <div id="msg-sucesso"> 
-              Dados do Usuário Atualizados com sucesso!
-              </div>
-              <?php
+            ?>
+            <script>alert("Dados do Usuário Atualizados com sucesso!");</script> 
+            <?php
         }else{
             ?>
-            <div class="msg-erro">
-            Senha e confirmar senha não correspondem
-            </div>
+            <script>alert("Senha e Confirmar Senha Não Correspondem!");</script> 
             <?php
-        }
+         }
     }else {
-        ?>
-        <div class="msg-erro">
-        Preencha todos os campos
-        </div>
-        <?php
+      ?>
+      <script>alert("Preencha Todos os Campos!");</script>
+      <?php
     }
     }
 }
@@ -96,7 +89,7 @@ if(isset($_POST['nome'])){
                 </div>
                 <input type="submit" class="btn btn-success" value="Salvar Alterações">
                <!-- <button type="submit" class="btn btn-success">Salvar Alterações</button> -->
-               <a href="gerenciar_usuarios.php" class="btn btn-info">Voltar para o ínicio</a>
+               <a href="../menu.html" class="btn btn-info">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>

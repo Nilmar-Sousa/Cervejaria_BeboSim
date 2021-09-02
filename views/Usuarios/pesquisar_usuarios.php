@@ -17,12 +17,12 @@ $usuario = new Usuario("cervejaria","localhost","root","");
   </head>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
-  <?php/*
+  <?php
   session_start();
   if(!isset($_SESSION['id_usuario'])){
     header("location: ../../index.php");
     exit;
-  }*/
+  }
   ?>
     <body>
         <div class="container">
@@ -31,8 +31,6 @@ $usuario = new Usuario("cervejaria","localhost","root","");
             <h1>Pesquisar</h1>
             <nav class="navbar navbar-light bg-light" >
                 <form class="form-inline" action="pesquisar_usuarios.php" method="POST">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Insira o CPF" aria-label="Pesquisar" name="pesquisa">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
                 </form>
             </nav>
             <table class="table table-hover">
@@ -67,19 +65,8 @@ $usuario = new Usuario("cervejaria","localhost","root","");
   }
 ?>
             </thead>
-            <!-- <tbody> 
-              <tr>
-                <th scope="row">Nome</th>
-                <td>09/08/1988</td>
-                <td>888888</td>
-                <td>555.555.555-55</td>
-                <td>Rua B</td>
-                <td>(77) 98888-8888</td>
-                <td>l@gmail.com</td>
-              </tr>
-          </tbody> -->
           </table>
-          <a href="gerenciar_usuarios.php" class="btn btn-info">Voltar para o ínicio</a>
+          <a href="../menu.html" class="btn btn-info">Voltar para o ínicio</a>
             </div>
           </div>
         </div>

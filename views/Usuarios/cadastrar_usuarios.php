@@ -52,7 +52,7 @@ $usuario = new Usuario("cervejaria","localhost","root","");
                   <input type="password" class="form-control" name="confirmar_senha">
                 </div>
                <button type="submit" class="btn btn-success">Enviar</button>
-               <a href="gerenciar_usuarios.php" class="btn btn-info">Voltar para o ínicio</a>
+               <a href="../menu.html" class="btn btn-info">Voltar para o ínicio</a>
                 </div>
                 </form>
               </div>
@@ -70,23 +70,17 @@ if(isset($_POST['nome'])){
       if($senha == $confirmar_senha){
         if($usuario->cadastrar($nome,$telefone,$email,$senha)){
           ?>
-          <div id="msg-sucesso"> 
-          Usuário Cadastrado com sucesso!
-          </div>
+          <script>alert("Usuário Cadastrado com Sucesso!");</script>
           <?php
         }else{
           ?>
-          <div class="msg-erro">
-          Usuário já cadastrado!
-          </div>
+          <script>alert("Usuário Já Possui Cadastro no Sistema!");</script>
           <?php
         }
       }else {
-				?>
-				<div class="msg-erro">
-					Senha e confirmar senha não correspondem
-				</div>
-				<?php
+        ?>
+        <script>alert("Preencha Todos os Campos!");</script>
+        <?php
       }
     }else {
         ?>

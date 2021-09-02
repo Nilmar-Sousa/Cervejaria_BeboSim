@@ -14,7 +14,6 @@ Class Produto {
     }
 
     public function cadastrar($nome, $qtd_estoque, $preco_venda, $percentual_comissao, $formula){
-		//verificar se já existe o email cadastrado
 		$sql = $this->pdo->prepare("SELECT id_produto FROM produtos WHERE nome = :nome");
 		$sql->bindValue(":nome",$nome);
 		$sql->execute();
@@ -25,7 +24,7 @@ Class Produto {
 			$sql = $this->pdo->prepare("INSERT INTO produtos (nome, qtd_estoque, preco_venda, percentual_comissao, formula) VALUES (:nome, :qtd_estoque, :preco_venda, :percentual_comissao, :formula)");
 			$sql->bindValue(":nome",$nome);
             $sql->bindValue(":qtd_estoque",$qtd_estoque);
-            $sql->bindValue("preco_venda",$preco_venda);
+            $sql->bindValue(":preco_venda",$preco_venda);
             $sql->bindValue(":percentual_comissao",$percentual_comissao);
 			$sql->bindValue(":formula",$formula);
 			$sql->execute();

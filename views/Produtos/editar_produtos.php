@@ -18,12 +18,12 @@ $produto = new Produto("cervejaria","localhost","root","");
   <body>
 
   <!-- Função para identificar se a sessão do usuário está ativa ou não -->
-  <?php/*
+  <?php
     session_start();
     if(!isset($_SESSION['id_usuario'])){
       header("location: ../../index.php");
       exit;
-    }*/
+    }
   ?>
 
 <?php //Retornar os resultado da pesquisa no formulário
@@ -44,18 +44,13 @@ if(isset($_POST['nome'])){
     $formula = addslashes($_POST['formula']);
     if(!empty($nome) && !empty($qtd_estoque) && !empty($preco_venda) && !empty($percentual_comissao) && !empty($formula)) {
       $produto->atualizarDados($nome, $qtd_estoque, $preco_venda, $percentual_comissao, $formula);
-      header("location: gerenciar_produtos.php");
-        ?>
-        <div id="msg-sucesso"> 
-        Dados do Produto Atualizados com sucesso!
-        </div>
-        <?php
+      ?>
+      <script>alert("Dados do Produto Atualizados com sucesso!");</script> 
+      <?php
     }else {
-        ?>
-        <div class="msg-erro">
-        Preencha todos os campos
-        </div>
-        <?php
+      ?>
+      <script>alert("Preencha Todos os Campos!");</script>
+      <?php
       }
   }
 }

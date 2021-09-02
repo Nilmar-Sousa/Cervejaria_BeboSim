@@ -45,20 +45,16 @@ if(isset($_POST['email'])) {
 	$senha = addslashes($_POST['senha']);
 	if(!empty($email) && !empty($senha)) {
 			if($usuario->logar($email,$senha)) {
-				header("location: views/Funcionarios/gerenciar_funcionarios.php");
+				header("location: views/menu.html");
 			}else {
-				?>
-				<div class="msg-erro">
-					Email e/ou senha estão incorretos!
-				</div>
-				<?php
+        ?>
+        <script>alert("Email ou Senha Estão Incorretos");</script>
+        <?php
 			}
 	}else {
-		?>
-		<div class="msg-erro">
-			Preencha todos os campos!
-		</div>
-		<?php
+    ?>
+    <script>alert("Preencha todos os campos");</script>
+    <?php
 	}
 }
 ?>
